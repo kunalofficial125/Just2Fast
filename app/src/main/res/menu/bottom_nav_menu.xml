@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/home_icon"/>
+    <item
+        android:id="@+id/cart"
+        android:icon="@drawable/baseline_category_24_white"
+        android:title="Category" />
+    <item android:id="@+id/orders"
+        android:title="@string/orders"
+        android:icon="@drawable/orders_icon"/>
+    <item android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/profile_icon"/>
+</menu>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background = "@color/white"
+    android:layout_width="match_parent"
+        android:layout_height="@dimen/_140sdp">
+
+    <ImageView
+        android:id="@+id/productImg"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_120sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/titleDialog"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="wrap_content"
+        android:text="Men Printed Round Neck Pure Cotton Beige T-Shirt..."
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintStart_toEndOf="@+id/productImg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout9"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_40sdp"
+       android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/productImg"
+        app:layout_constraintTop_toBottomOf="@+id/titleDialog">
+
+        <ImageView
+            android:id="@+id/star1"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/baseline_star_outline_24" />
+
+        <ImageView
+            android:id="@+id/star2"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/baseline_star_outline_24" />
+
+        <ImageView
+            android:id="@+id/star3"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/baseline_star_outline_24" />
+
+        <ImageView
+            android:id="@+id/star4"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/baseline_star_outline_24" />
+
+        <ImageView
+            android:id="@+id/star5"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/baseline_star_outline_24" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/done"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_40sdp"
+        android:text="Done"
+        android:textSize="@dimen/_14ssp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:backgroundTint="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/productImg"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

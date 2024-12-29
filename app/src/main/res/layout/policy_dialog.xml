@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingBottom="@dimen/_10sdp"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/red"
+        android:text="Privacy Policy and Terms and Conditions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView61"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/_13ssp"
+        android:text="Read and Understand Terms and Conditions and All policies Carefully."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/tc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:text="Terms and Conditions,"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:textSize="@dimen/_13ssp"
+        android:textColor="@color/blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView61" />
+
+    <TextView
+        android:id="@+id/pp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:text="Privacy Policy"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/_13ssp"
+        android:layout_marginStart="@dimen/_5sdp"
+        app:layout_constraintStart_toEndOf="@+id/tc"
+        app:layout_constraintTop_toBottomOf="@+id/textView61" />
+
+    <TextView
+        android:id="@+id/cp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancellation Return/Refund Policy"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/_13ssp"
+        android:layout_marginTop="@dimen/_2sdp"
+        app:layout_constraintStart_toStartOf="@+id/tc"
+        app:layout_constraintTop_toBottomOf="@+id/tc" />
+
+    <Button
+        android:id="@+id/accept"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:text="Accept"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+    <Button
+        android:id="@+id/decline"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:backgroundTint="@color/grey"
+        android:text="Decline"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/accept"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="I have read and accept the policies and terms and conditions."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

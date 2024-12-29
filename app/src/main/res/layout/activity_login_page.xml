@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cs"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:background="@color/reddish"
+    android:layout_width="match_parent"
+    tools:context=".Login_page">
+
+
+    <ImageView
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardView9"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_260sdp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="@dimen/_30sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/signInButton"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <!--         <ImageView-->
+        <!--            android:id="@+id/imageView4"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_marginTop="@dimen/_20sdp"-->
+        <!--            android:layout_marginStart="@dimen/_110sdp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:srcCompat="@drawable/ushop_logo" />-->
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_22ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView5" />
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView9"-->
+        <!--            android:layout_width="@dimen/_100sdp"-->
+        <!--            android:layout_marginStart="@dimen/_230sdp"-->
+        <!--            android:layout_marginTop="@dimen/_20sdp"-->
+        <!--            android:layout_height="@dimen/_100sdp"-->
+        <!--            app:srcCompat="@drawable/tshirt_icon" />-->
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView10"-->
+        <!--            android:layout_width="@dimen/_80sdp"-->
+        <!--            android:layout_height="@dimen/_70sdp"-->
+        <!--            android:layout_marginTop="@dimen/_180sdp"-->
+        <!--            android:layout_marginStart="@dimen/_20sdp"-->
+        <!--            app:srcCompat="@drawable/shoe_icon" />-->
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView11"-->
+        <!--            android:layout_width="@dimen/_80sdp"-->
+        <!--            android:layout_height="@dimen/_70sdp"-->
+        <!--            android:layout_marginTop="@dimen/_20sdp"-->
+        <!--            android:layout_marginStart="@dimen/_5sdp"-->
+        <!--            android:rotation="@integer/material_motion_duration_short_1"-->
+        <!--            app:srcCompat="@drawable/cap_icon" />-->
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView5"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/loginanime"
+            app:lottie_repeatCount="100000000"
+            app:lottie_repeatMode="restart" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/shopLoad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B9000000"
+        android:padding="@dimen/_100sdp"
+        android:visibility="visible"
+        android:paddingTop="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/shopload"
+        app:lottie_repeatCount="100000000"
+        app:lottie_repeatMode="restart" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

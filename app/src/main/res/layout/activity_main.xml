@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:background="@drawable/nav_bar_design"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_nav_menu" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/groceryCard"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/_50sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_height="@dimen/_45sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@color/red"/>
+
+            <TextView
+                android:id="@+id/noOfProductsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="@color/grey"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="0 Items Added"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@color/white"/>
+
+            <Button
+                android:id="@+id/continueBtn"
+                android:layout_width="wrap_content"
+                android:text="Continue"
+                android:backgroundTint="@color/green"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_70sdp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

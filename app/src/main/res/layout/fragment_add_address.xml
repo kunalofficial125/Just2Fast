@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.just2fast.ushop.AddAddress">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/_10sdp"
+                >
+
+                <TextView
+                    android:id="@+id/activityTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:text="Add New Address"
+                    android:textColor="@color/white"
+                    android:background="@color/reddish"
+                    android:textSize="@dimen/_18ssp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:textStyle="bold"
+                    android:paddingStart="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/nominee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/text_box_bg"
+                    android:ems="10"
+                    android:hint="Full Name"
+                    android:inputType="textPersonName"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/activityTitle" />
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/countryCodePicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/text_box_bg"
+                    android:paddingTop="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nominee" />
+
+                <EditText
+                    android:id="@+id/newPh"
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:autofillHints="phone"
+                    android:background="@drawable/text_box_bg"
+                    android:ems="10"
+                    android:hint="Phone Number"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:inputType="phone"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    app:layout_constraintStart_toEndOf="@+id/countryCodePicker"
+                    app:layout_constraintTop_toBottomOf="@+id/nominee" />
+
+                <EditText
+                    android:id="@+id/house"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/text_box_bg"
+                    android:ems="10"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:hint="House / Flat No."
+                    android:inputType="textPersonName"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/countryCodePicker" />
+
+                <EditText
+                    android:id="@+id/road"
+                    android:layout_width="@dimen/_250sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/text_box_bg"
+                    android:ems="10"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:hint="Colony / Street Name"
+                    android:inputType="textPersonName"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/house" />
+
+                <EditText
+                    android:id="@+id/area"
+                    android:layout_width="@dimen/_250sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/text_box_bg"
+                    android:ems="10"
+                    android:hint="AREA"
+                    android:inputType="textPersonName"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.325"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/road" />
+
+                <EditText
+                    android:id="@+id/city"
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/text_box_bg"
+                    android:ems="10"
+                    android:hint="CITY"
+                    android:inputType="textPersonName"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/area" />
+
+                <EditText
+                    android:id="@+id/postal"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/text_box_bg"
+                    android:ems="10"
+                    android:hint="POSTAL CODE"
+                    android:inputType="textPostalAddress"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/city"
+                    app:layout_constraintTop_toBottomOf="@+id/area" />
+
+                <EditText
+                    android:id="@+id/state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/text_box_bg"
+                    android:ems="10"
+                    android:hint="STATE"
+                    android:inputType="textPersonName"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.159"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/city" />
+
+                <Button
+                    android:id="@+id/save_address"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:text="SAVE"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/road" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/progressBar9"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_marginBottom="@dimen/_50sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_repeatMode="restart"
+                    app:lottie_repeatCount="10000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:lottie_rawRes="@raw/shopload"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

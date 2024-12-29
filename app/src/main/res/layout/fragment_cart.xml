@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cart">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingBottom="?attr/actionBarSize"
+            android:layout_height="wrap_content">
+
+
+
+
+            <TextView
+                android:id="@+id/textView62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Men's Fashion"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView62">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/tshirtCat"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:contentDescription="tshirt"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/tshirt_cat_img" />
+
+
+                    <ImageView
+                        android:id="@+id/shoeCat"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:contentDescription="shoe"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/shoes_cat_img" />
+
+                    <ImageView
+                        android:id="@+id/shirtCat"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:contentDescription="shirt"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/shirts_cat_img" />
+
+                    <ImageView
+                        android:id="@+id/jeanCat"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:contentDescription="jean"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/jeans_cat_img" />
+
+                    <ImageView
+                        android:id="@+id/jacketCat"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:contentDescription="jacket"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/jackets_cat_img" />
+
+                    <ImageView
+                        android:id="@+id/pantCat"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:contentDescription="track pant"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/trackpants_cat_img" />
+
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView63"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@color/reddish"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:text="Category"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView64"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Women's Fashion"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView4" />
+
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView64">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/topCat"
+                        android:layout_width="@dimen/_100sdp"
+                        android:contentDescription="top"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/tops_cat_img" />
+
+
+                    <ImageView
+                        android:id="@+id/kurtaCat"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:contentDescription="kurta"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/kurta_cat_img" />
+
+                    <ImageView
+                        android:id="@+id/sareeCat"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:contentDescription="saree"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/saree_cat_img" />
+
+                    <ImageView
+                        android:id="@+id/jumpsuitCat"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:contentDescription="jumpsuit"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/jumpsuits_cat_img" />
+
+
+
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView65"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Grocery"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView5" />
+
+
+            <ImageView
+                android:id="@+id/riceCat"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:contentDescription="rice"
+                android:src="@drawable/rice_cat_img"
+                app:layout_constraintStart_toEndOf="@+id/flourCat"
+                app:layout_constraintTop_toBottomOf="@+id/textView65" />
+
+            <ImageView
+                android:id="@+id/flourCat"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:contentDescription="flour"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/flour_cat_img"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView65" />
+
+            <ImageView
+                android:id="@+id/pulseCat"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/pulses_cat_img"
+                android:contentDescription="pulse"
+                app:layout_constraintStart_toEndOf="@+id/cookingOilCat"
+                app:layout_constraintTop_toBottomOf="@+id/textView65" />
+
+            <ImageView
+                android:id="@+id/cookingOilCat"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/oil_cat_img"
+                android:contentDescription="oil"
+                app:layout_constraintStart_toEndOf="@+id/riceCat"
+                app:layout_constraintTop_toBottomOf="@+id/textView65" />
+
+            <ImageView
+                android:id="@+id/drinkCat"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:contentDescription="drink"
+                android:src="@drawable/drinks_cat_img"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flourCat" />
+
+            <ImageView
+                android:id="@+id/teaCat"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:contentDescription="tea"
+                android:src="@drawable/tc_cat_img"
+                app:layout_constraintStart_toEndOf="@+id/drinkCat"
+                app:layout_constraintTop_toBottomOf="@+id/riceCat" />
+
+            <ImageView
+                android:id="@+id/faceCreamCat"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:src="@drawable/cream_cat_img"
+                android:contentDescription="cream"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintStart_toEndOf="@+id/teaCat"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/cookingOilCat" />
+
+            <ImageView
+                android:id="@+id/hairOilCat"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:contentDescription="hairoil"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:src="@drawable/hairoil_cat_img"
+                app:layout_constraintStart_toEndOf="@+id/faceCreamCat"
+                app:layout_constraintTop_toBottomOf="@+id/pulseCat" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="More Categories are coming soon !"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                android:textColor="@color/grey"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/teaCat" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchMoreCard"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:cardCornerRadius="@dimen/_20sdp"
+                android:backgroundTint="@color/greyIsh"
+                android:layout_margin="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" >
+
+                <ImageView
+                    android:id="@+id/searcMoreImg"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:src="@drawable/baseline_search_24_black" />
+
+                <TextView
+                    android:id="@+id/searchMoreText"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_16ssp"
+                    android:textColor="@color/grey"
+                    android:text="Search More" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+</FrameLayout>

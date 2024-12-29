@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Ushop</string>
+    <string name="phone_number">PHONE NUMBER</string>
+    <string name="send_otp">SEND OTP</string>
+    <string name="otp_not_received">OTP NOT RECEIVED?</string>
+    <string name="resend_otp">RESEND OTP!</string>
+    <string name="search">Search</string>
+    <string name="Ushop">ToolbarTitle</string>
+    <string name="orders">Orders</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="savedaddresses">savedAddresses</string>
+    <string name="ijhhh">ijhhh</string>
+    <string name="ushop">Ushop</string>∟
+    <string name="phone_number1">PHONE NUMBER</string>
+</resources>

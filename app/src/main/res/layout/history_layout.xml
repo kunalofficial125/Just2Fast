@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/ripple"
+    android:paddingBottom="@dimen/_3sdp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="tshirt"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/sanspro"
+        android:textColor="@color/grey"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@+id/imageView1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_height="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_youtube_searched_for_24" />
+</androidx.constraintlayout.widget.ConstraintLayout>

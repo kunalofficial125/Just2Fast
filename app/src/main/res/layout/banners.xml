@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_230sdp"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:backgroundTint="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_20sdp"
+    android:layout_height="@dimen/_90sdp">
+
+    <ImageView
+        android:id="@+id/pfp"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:scaleType="fitCenter"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_100sdp"
+        android:layout_width="wrap_content"
+        android:textColor="@color/Light_Black"
+        android:fontFamily="@font/sanspro"
+        android:textStyle="bold"
+        android:textSize="@dimen/_16ssp"
+        android:layout_height="wrap_content"
+        android:text="Shadow Clone" />
+
+    <Button
+        android:id="@+id/buybtn"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginStart="@dimen/_100sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_9ssp"
+        android:layout_marginTop="@dimen/_45sdp"
+        android:fontFamily="@font/sanspro"
+        android:backgroundTint="@color/Light_Black"
+        android:text="Buy Now" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="@dimen/_58sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:fontFamily="@font/sanspro"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_11ssp"
+        android:textColor="@color/grey"
+        android:layout_marginStart="@dimen/_100sdp"
+        android:textStyle="bold"
+        android:text="Introducing" />
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,30 @@
+[
+	{
+		"title": "Fancy Men Tshirt",
+		"category": "tshirt",
+		"fabric": "cotton",
+		"occasion": "Formal",
+		"gender": "male",
+		"mrp": "999",
+		"sellingPrice": "499product111",
+		"brandName": "Azure",
+		"packOf": "1",
+		"description": "this tshirt is cool :)",
+		"star5": "3product111",
+		"star4": "2product111",
+		"star3": "0product111",
+		"star2": "2product111",
+		"star1": "1product111",
+		"color": ["blue", "green", "black"],
+		"Images": [
+			"https://th.bing.com/th/id/OIP.Ub6YpRIAymTwuyjRcSD92QHaIL?pid=ImgDet&rs=1",
+			"https://th.bing.com/th/id/OIP.yRSLuEAM-xc3Lhvi6DSAbwHaHa?pid=ImgDet&rs=1"
+		],
+		"productId": "product111",
+		"size": ["S", "L", "XL"],
+		"colorImages": [
+			"https://purepng.com/public/uploads/large/purepng.com-blue-t-shirtclothingt-shirtt-shirtdressfashionclothshirt-691522330467vjhb0.png",
+			"https://th.bing.com/th/id/OIP.bD3dT2CazF4__z4TJVz8FQHaHR?pid=ImgDet&rs=1"
+		]
+	}
+]
