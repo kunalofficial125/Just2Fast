@@ -32,6 +32,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
+
+import org.json.JSONObject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -85,6 +89,7 @@ public class payment_method extends Fragment {
         }
     }
 
+    Bundle bundle;
     LinearLayout ll1,ll2;
     RadioButton onlinePay,codPay;
     int GET_DEV_CODE =100;
@@ -96,6 +101,7 @@ public class payment_method extends Fragment {
     ArrayList<ProductModel> ProductModels = new ArrayList<>();
     String mod;
     String userLat,userLong;
+    String date = "00/00/0000";
     String month;
     int NavFlag;
     int dayOfMonth;
@@ -154,7 +160,7 @@ public class payment_method extends Fragment {
         userLat = userLatLong.getString("lat","null");
         userLong = userLatLong.getString("long","null");
 
-        Bundle bundle  = new Bundle();
+         bundle  = new Bundle();
 //        bundle.putParcelableArrayList("list",clothes_models);
 //        bundle.putString("name",name);
 //        bundle.putString("ph",ph);
@@ -176,7 +182,7 @@ public class payment_method extends Fragment {
 
 
 
-        String date  = dayOfMonth+" "+month+" "+year;
+        date  = dayOfMonth+" "+month+" "+year;
         Random random = new Random();
         int randomNumber = 1000 + random.nextInt(9000);
         int orderId = 10000000 + random.nextInt(90000000);
@@ -297,65 +303,110 @@ public class payment_method extends Fragment {
             @Override
             public void onClick(View view) {
 
-                confirm.setVisibility(View.INVISIBLE);
+                if(codPay.isChecked()){
+                    confirm.setVisibility(View.INVISIBLE);
 
-                firebaseDatabase.getReference().child("Category").child("SellerData").child(orderDetails.get(0).product.get(0).sellerId).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    //update data
+                    updateData();
 
-                        SellerModel sellerModel = snapshot.getValue(SellerModel.class);
+                    //switch to next page
+                    if(parent instanceof MainActivity){
+                        bundle.putInt("CheckBackFlag",1);
+                        ((MainActivity)parent).runFragment(bundle,new Confirm_order_details(),"Confirm Order Details");
+                    }
+                    else {
+                        ((search_instance)parent).runFragment(bundle,new Confirm_order_details(),6);
+                    }
+
+                }
+                else{
+                    //Razorpay open here
+                    Checkout.preload(requireContext());
+                    Checkout co = new Checkout();
+                    co.setKeyID("rzp_test_G40CLIW4oXoCnu");
+
+                    //Start Payment
+                    startPayment(co,Integer.parseInt(totalAmount));
+                }
+                dialog.cancel();
+            }
+        });
+
+        continueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*if(codPay.isChecked()){
+                    mod = "Cash On Delivery";
+                }
+                else{
+                    mod = "Online";
+                }*/
+                dialog.show();
+            }
+        });
 
 
-                        if(sellerModel!=null) {
+        return v;
+    }
+
+    public void updateData(){
+        firebaseDatabase.getReference().child("Category").child("SellerData").child(orderDetails.get(0).product.get(0).sellerId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                SellerModel sellerModel = snapshot.getValue(SellerModel.class);
 
 
-                            if (sellerModel.Orders != null) {
+                if(sellerModel!=null) {
 
 
-                                sellerModel.Orders.addAll(orderDetails);
+                    if (sellerModel.Orders != null) {
+
+
+                        sellerModel.Orders.addAll(orderDetails);
 
 
 
-                                for(int i=0;i<orderDetails.size();i++){
+                        for(int i=0;i<orderDetails.size();i++){
 
-                                    for(int j=0;j<sellerModel.Products.size();j++){
+                            for(int j=0;j<sellerModel.Products.size();j++){
 
-                                        if(orderDetails.get(i).product.get(0).productId.equals(sellerModel.Products.get(j).productId)){
+                                if(orderDetails.get(i).product.get(0).productId.equals(sellerModel.Products.get(j).productId)){
 
-                                            Log.d("ValueProStock",sellerModel.Products.get(j).stock+"");
-                                            Log.d("ValueOrderStock",Integer.parseInt(orderDetails.get(i).quantity)+"");
+                                    Log.d("ValueProStock",sellerModel.Products.get(j).stock+"");
+                                    Log.d("ValueOrderStock",Integer.parseInt(orderDetails.get(i).quantity)+"");
 
-                                            int a =  sellerModel.Products.get(j).stock - Integer.parseInt(orderDetails.get(i).quantity);
+                                    int a =  sellerModel.Products.get(j).stock - Integer.parseInt(orderDetails.get(i).quantity);
 
-                                            Log.d("ValueA",a+"");
+                                    Log.d("ValueA",a+"");
 
-                                            sellerModel.Products.get(j).stock = a;
-
-                                        }
-
-                                    }
+                                    sellerModel.Products.get(j).stock = a;
 
                                 }
 
-
-
-
-                                firebaseDatabase.getReference().child("Category").child("SellerData").child(orderDetails.get(0).product.get(0).sellerId).child("OrderAlert").setValue(1).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        sellerModel.OrderAlert = 1;
-                                        firebaseDatabase.getReference().child("Category").child("SellerData").child(orderDetails.get(0).product.get(0).sellerId).setValue(sellerModel);
-                                    }
-                                });
                             }
-                            else {
-                                firebaseDatabase.getReference().child("Category").child("SellerData").child(orderDetails.get(0).product.get(0).sellerId).child("OrderAlert").setValue(1).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        firebaseDatabase.getReference().child("Category").child("SellerData").child(orderDetails.get(0).product.get(0).sellerId).child("Orders").setValue(orderDetails);
-                                    }
-                                });
+
+                        }
+
+
+
+
+                        firebaseDatabase.getReference().child("Category").child("SellerData").child(orderDetails.get(0).product.get(0).sellerId).child("OrderAlert").setValue(1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                sellerModel.OrderAlert = 1;
+                                firebaseDatabase.getReference().child("Category").child("SellerData").child(orderDetails.get(0).product.get(0).sellerId).setValue(sellerModel);
                             }
+                        });
+                    }
+                    else {
+                        firebaseDatabase.getReference().child("Category").child("SellerData").child(orderDetails.get(0).product.get(0).sellerId).child("OrderAlert").setValue(1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                firebaseDatabase.getReference().child("Category").child("SellerData").child(orderDetails.get(0).product.get(0).sellerId).child("Orders").setValue(orderDetails);
+                            }
+                        });
+                    }
 
 
 
@@ -392,212 +443,257 @@ public class payment_method extends Fragment {
 
 
 
-                            for(int i=0;i<orderDetails.size();i++){
+                    for(int i=0;i<orderDetails.size();i++){
 
-                                int finalI = i;
+                        int finalI = i;
 
-                                firebaseDatabase.getReference().child("Category").child("products").child(orderDetails.get(i).product.get(0).category.toLowerCase()).orderByChild("productId").equalTo(orderDetails.get(i).product.get(0).productId).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        firebaseDatabase.getReference().child("Category").child("products").child(orderDetails.get(i).product.get(0).category.toLowerCase()).orderByChild("productId").equalTo(orderDetails.get(i).product.get(0).productId).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                                            dataSnapshot.getRef().child("stock").setValue(dataSnapshot.getValue(ProductModel.class).stock - Integer.parseInt(orderDetails.get(finalI).quantity)).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
+                                    dataSnapshot.getRef().child("stock").setValue(dataSnapshot.getValue(ProductModel.class).stock - Integer.parseInt(orderDetails.get(finalI).quantity)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
 
-                                                   // dataSnapshot.getRef().child("stock").
-
-                                                }
-                                            });
+                                            // dataSnapshot.getRef().child("stock").
 
                                         }
+                                    });
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+
+
+                    }
+
+
+                    firebaseDatabase.getReference().child("Category").child("DeliveryPartners").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                            for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+
+                                if(GET_DEV_CODE !=100){
+                                    break;
+                                }
+
+
+                                GetFreeDev getFreeDev = dataSnapshot.getValue(GetFreeDev.class);
+
+                                if(getFreeDev!=null){
+
+                                    Log.d("GetDevCodeBefore",GET_DEV_CODE+"");
+
+                                    if(/*getFreeDev.status!=-1 &&*/ GET_DEV_CODE == 100){
+
+                                        dataSnapshot.getRef().child("status").setValue(1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Log.d("GetDevCode",GET_DEV_CODE+"");
+                                                GET_DEV_CODE=200;
+
+                                                firebaseDatabase.getReference().child("Category").child("DeliveryPartnersList").orderByChild("devId").equalTo(getFreeDev.devId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                                        for (DataSnapshot dataSnapshot1 : snapshot.getChildren()){
+                                                            ArrayList<OrderDetailsForDev> tempOrder = new ArrayList<>();
+
+                                                            if(dataSnapshot1!=null){
+
+                                                                DeliveryPartnerModel deliveryPartnerModel = dataSnapshot1.getValue(DeliveryPartnerModel.class);
+
+                                                                ArrayList<String> titles  =  new ArrayList<>();
+                                                                ArrayList<String> color  =  new ArrayList<>();
+                                                                ArrayList<String> size  =  new ArrayList<>();
+                                                                ArrayList<String> quantity  =  new ArrayList<>();
+                                                                ArrayList<String> images  =  new ArrayList<>();
+
+
+                                                                for(int i=0;i<orderDetails.size();i++){
+
+                                                                    titles.add(orderDetails.get(i).product.get(0).title);
+                                                                    color.add(orderDetails.get(i).color);
+                                                                    size.add(orderDetails.get(i).size);
+                                                                    quantity.add(orderDetails.get(i).quantity);
+
+                                                                    for(int j=0;j<orderDetails.get(i).product.get(0).color.size();j++){
+
+                                                                        if(orderDetails.get(i).product.get(0).color.get(j).equals(orderDetails.get(i).color)){
+                                                                            images.add(orderDetails.get(i).product.get(0).colorImages.get(j));
+                                                                        }
+
+                                                                    }
+
+                                                                }
+
+                                                                OrderDetailsForDev orderDetailsForDev = new OrderDetailsForDev(orderDetails.get(0).ID,titles,color,size,images,quantity,orderDetails.get(0).name,orderDetails.get(0).userEmail,orderDetails.get(0).Lat,orderDetails.get(0).Long,
+                                                                        orderDetails.get(0).address,mod,orderDetails.get(0).totalAmount,1,orderDetails.get(0).OTP,date,orderDetails.get(0).userPh,sellerModel.ShopName,sellerModel.phone,sellerModel.alterPhone,"",sellerModel.Lat,sellerModel.Long,sellerModel.ShopAddress,sellerModel.SellerId);
+
+
+                                                                if(deliveryPartnerModel.orders!=null){
+
+                                                                    tempOrder.addAll(deliveryPartnerModel.orders);
+                                                                    tempOrder.add(orderDetailsForDev);
+
+                                                                }
+                                                                else{
+
+                                                                    tempOrder.add(orderDetailsForDev);
+
+                                                                }
+
+                                                                dataSnapshot1.getRef().child("orders").setValue(tempOrder).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                    @Override
+                                                                    public void onSuccess(Void unused) {
+                                                                        //Toast.makeText(parent, "DeliveryUpdateDone", Toast.LENGTH_SHORT).show();
+                                                                        dataSnapshot1.getRef().child("OrderAlert").setValue(1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                            @Override
+                                                                            public void onSuccess(Void unused) {
+                                                                                Log.d("DeliveryPartnerAlert","New Order");
+                                                                            }
+                                                                        });
+                                                                    }
+                                                                }).addOnFailureListener(new OnFailureListener() {
+                                                                    @Override
+                                                                    public void onFailure(@NonNull Exception e) {
+                                                                        //Toast.makeText(parent, "DeliveryUpdateFail", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                });
+
+
+
+                                                            }
+
+                                                        }
+
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                    }
+                                                });
+
+
+
+                                            }
+                                        });
+
+                                        GET_DEV_CODE = 200;
+
+
                                     }
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-
+                                }
 
 
 
                             }
 
 
-                            firebaseDatabase.getReference().child("Category").child("DeliveryPartners").addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                                    for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-
-                                        if(GET_DEV_CODE !=100){
-                                            break;
-                                        }
-
-
-                                        GetFreeDev getFreeDev = dataSnapshot.getValue(GetFreeDev.class);
-
-                                        if(getFreeDev!=null){
-
-                                            Log.d("GetDevCodeBefore",GET_DEV_CODE+"");
-
-                                            if(/*getFreeDev.status!=-1 &&*/ GET_DEV_CODE == 100){
-
-                                                dataSnapshot.getRef().child("status").setValue(1).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void unused) {
-                                                        Log.d("GetDevCode",GET_DEV_CODE+"");
-                                                        GET_DEV_CODE=200;
-
-                                                        firebaseDatabase.getReference().child("Category").child("DeliveryPartnersList").orderByChild("devId").equalTo(getFreeDev.devId).addListenerForSingleValueEvent(new ValueEventListener() {
-                                                            @Override
-                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                                                                for (DataSnapshot dataSnapshot1 : snapshot.getChildren()){
-                                                                    ArrayList<OrderDetailsForDev> tempOrder = new ArrayList<>();
-
-                                                                    if(dataSnapshot1!=null){
-
-                                                                        DeliveryPartnerModel deliveryPartnerModel = dataSnapshot1.getValue(DeliveryPartnerModel.class);
-
-                                                                        ArrayList<String> titles  =  new ArrayList<>();
-                                                                        ArrayList<String> color  =  new ArrayList<>();
-                                                                        ArrayList<String> size  =  new ArrayList<>();
-                                                                        ArrayList<String> quantity  =  new ArrayList<>();
-                                                                        ArrayList<String> images  =  new ArrayList<>();
-
-
-                                                                        for(int i=0;i<orderDetails.size();i++){
-
-                                                                            titles.add(orderDetails.get(i).product.get(0).title);
-                                                                            color.add(orderDetails.get(i).color);
-                                                                            size.add(orderDetails.get(i).size);
-                                                                            quantity.add(orderDetails.get(i).quantity);
-
-                                                                            for(int j=0;j<orderDetails.get(i).product.get(0).color.size();j++){
-
-                                                                                if(orderDetails.get(i).product.get(0).color.get(j).equals(orderDetails.get(i).color)){
-                                                                                    images.add(orderDetails.get(i).product.get(0).colorImages.get(j));
-                                                                                }
-
-                                                                            }
-
-                                                                        }
-
-                                                                        OrderDetailsForDev orderDetailsForDev = new OrderDetailsForDev(orderDetails.get(0).ID,titles,color,size,images,quantity,orderDetails.get(0).name,orderDetails.get(0).userEmail,orderDetails.get(0).Lat,orderDetails.get(0).Long,
-                                                                                orderDetails.get(0).address,mod,orderDetails.get(0).totalAmount,1,orderDetails.get(0).OTP,date,orderDetails.get(0).userPh,sellerModel.ShopName,sellerModel.phone,sellerModel.alterPhone,"",sellerModel.Lat,sellerModel.Long,sellerModel.ShopAddress,sellerModel.SellerId);
-
-
-                                                                        if(deliveryPartnerModel.orders!=null){
-
-                                                                            tempOrder.addAll(deliveryPartnerModel.orders);
-                                                                            tempOrder.add(orderDetailsForDev);
-
-                                                                        }
-                                                                        else{
-
-                                                                            tempOrder.add(orderDetailsForDev);
-
-                                                                        }
-
-                                                                        dataSnapshot1.getRef().child("orders").setValue(tempOrder).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                            @Override
-                                                                            public void onSuccess(Void unused) {
-                                                                                //Toast.makeText(parent, "DeliveryUpdateDone", Toast.LENGTH_SHORT).show();
-                                                                                dataSnapshot1.getRef().child("OrderAlert").setValue(1).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                                    @Override
-                                                                                    public void onSuccess(Void unused) {
-                                                                                        Log.d("DeliveryPartnerAlert","New Order");
-                                                                                    }
-                                                                                });
-                                                                            }
-                                                                        }).addOnFailureListener(new OnFailureListener() {
-                                                                            @Override
-                                                                            public void onFailure(@NonNull Exception e) {
-                                                                                //Toast.makeText(parent, "DeliveryUpdateFail", Toast.LENGTH_SHORT).show();
-                                                                            }
-                                                                        });
-
-
-
-                                                                    }
-
-                                                                }
-
-                                                            }
-
-                                                            @Override
-                                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                                            }
-                                                        });
-
-
-
-                                                    }
-                                                });
-
-                                                GET_DEV_CODE = 200;
-
-
-                                            }
-
-                                        }
-
-
-
-                                    }
-
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-
-
-
                         }
 
-                        else{
-                            Toast.makeText(parent, "Technical Problem !", Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
                         }
+                    });
 
 
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-                if(parent instanceof MainActivity){
-                    bundle.putInt("CheckBackFlag",1);
-                    ((MainActivity)parent).runFragment(bundle,new Confirm_order_details(),"Confirm Order Details");
                 }
-                else {
-                    ((search_instance)parent).runFragment(bundle,new Confirm_order_details(),6);
+
+                else{
+                    Toast.makeText(parent, "Technical Problem !", Toast.LENGTH_SHORT).show();
                 }
-                dialog.cancel();
+
             }
-        });
 
-        continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(codPay.isChecked()){
-                    mod = "Cash On Delivery";
-                    dialog.show();
-                }
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
-
-        return v;
     }
+
+    public void startPayment(Checkout checkout, int price) {
+
+        /**
+         * Set your logo here
+         */
+        checkout.setImage(R.drawable.applogo);
+
+        /**
+         * Reference to current activity
+         */
+        final Activity activity = parent;
+
+        /**
+         * Pass your payment options to the Razorpay Checkout as a JSONObject
+         */
+        try {
+            JSONObject options = new JSONObject();
+
+            options.put("name", name);
+            options.put("description", "Reference No. #123456");
+            options.put("image", "http://example.com/image/rzp.jpg");
+            //options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
+            options.put("theme.color", "#FF3333");
+            options.put("currency", "INR");
+            options.put("amount", price*100+"");//pass amount in currency subunits
+            options.put("prefill.email", user.getEmail());
+            options.put("prefill.contact",ph);
+            JSONObject retryObj = new JSONObject();
+            retryObj.put("enabled", true);
+            retryObj.put("max_count", 4);
+            options.put("retry", retryObj);
+
+            checkout.open(activity, options);
+
+        } catch(Exception e) {
+            Log.e("Payment", "Error in starting Razorpay Checkout", e);
+        }
+    }
+
+    /*@Override
+    public void onPaymentSuccess(String s) {
+        updateData();
+        if(parent instanceof MainActivity){
+            bundle.putInt("CheckBackFlag",1);
+            ((MainActivity)parent).runFragment(bundle,new Confirm_order_details(),"Confirm Order Details");
+        }
+        else {
+            ((search_instance)parent).runFragment(bundle,new Confirm_order_details(),6);
+        }
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Log.d("Payment",s);
+        Toast.makeText(getActivity().getApplicationContext(),"Payment Failed by User", Toast.LENGTH_SHORT).show();
+    }*/
+
+    public void switchFragment(){
+        if(parent instanceof MainActivity){
+            bundle.putInt("CheckBackFlag",1);
+            ((MainActivity)parent).runFragment(bundle,new Confirm_order_details(),"Confirm Order Details");
+        }
+        else {
+            ((search_instance)parent).runFragment(bundle,new Confirm_order_details(),6);
+        }
+    }
+
+
 }

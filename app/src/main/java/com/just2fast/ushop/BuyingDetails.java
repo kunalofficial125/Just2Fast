@@ -250,7 +250,7 @@ public class BuyingDetails extends Fragment {
                 bundle.putParcelableArrayList("list",list);
 
                 if(parent instanceof MainActivity){
-                    ((MainActivity)parent).runFragment(bundle,new payment_method(),"Payment Method");
+                    ((MainActivity)parent).runFragment(bundle,new payment_method(),"paymentMethods");
                 }
                 else {
                     ((search_instance)parent).runFragment(bundle,new payment_method(),5);

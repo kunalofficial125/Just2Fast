@@ -614,13 +614,13 @@ public class BuyPage extends Fragment {
 
                     int hour = Integer.parseInt(currentHour);
 
-                    if(hour>19 || hour<8){
+                    /*if(hour>19 || hour<8){
                         buy.setVisibility(View.INVISIBLE);
                         outOfStockText.setText("Shop Closed !");
                         outOfStockDate.setText("You can buy after 8am and before 7pm");
                         outOfStockText.setVisibility(View.VISIBLE);
                         outOfStockDate.setVisibility(View.VISIBLE);
-                    }
+                    }*/
 
 
 

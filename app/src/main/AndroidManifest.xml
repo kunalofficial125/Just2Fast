@@ -95,6 +95,11 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_G40CLIW4oXoCnu" />
+
     </application>
 
 </manifest>

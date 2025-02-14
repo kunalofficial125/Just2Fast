@@ -64,6 +64,7 @@ import com.google.firebase.installations.FirebaseInstallations;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.gson.Gson;
+import com.razorpay.PaymentResultListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -71,7 +72,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PaymentResultListener {
     private static final int REQUEST_NOTIFICATION_PERMISSION = 1;
     BottomNavigationView bnv;
 
@@ -421,7 +422,7 @@ public class MainActivity extends AppCompatActivity {
             ft.addToBackStack("Confirm Order Details");
             ft.commit();
         } else {
-            ft.replace(R.id.frameLayout,fragment);
+            ft.replace(R.id.frameLayout,fragment,Title);
             fragment.setArguments(bundle);
             ft.addToBackStack(null);
             ft.commit();
@@ -621,7 +622,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onPaymentSuccess(String s) {
 
+        Fragment fragment = (payment_method) getSupportFragmentManager().findFragmentByTag("paymentMethods");
+
+        if(fragment!=null){
+            ((payment_method)fragment).updateData();
+            ((payment_method)fragment).switchFragment();
+        }
+        Log.d("Payment",s);
+
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Log.d("Payment",s);
+        Toast.makeText(this,"Payment Failed by User", Toast.LENGTH_SHORT).show();
+    }
 
 
 }

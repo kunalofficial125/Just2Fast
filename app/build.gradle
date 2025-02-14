@@ -100,11 +100,14 @@ dependencies {
 
     implementation "androidx.paging:paging-runtime:3.1.1"
 
+    //Razorpay Gateway
+    implementation 'com.razorpay:checkout:1.6.40'
+
 
 
 
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 }
